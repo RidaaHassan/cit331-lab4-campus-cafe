@@ -51,3 +51,13 @@ strength, not on which rule comes first.
 | 8 | bugs.html line 21: `<label for="mail">` but the input has `id="email"` | Lighthouse, validator | Change it to `for="email"` |
 | 9 | bugs.html line 2: `<html>` has no lang attribute | Lighthouse, validator | Change it to `<html lang="en">` |
 | 10 | bugs.css `.menu a`: the Home and Menu links had only a margin, so the touch targets were too small and too close | Lighthouse (Touch targets, found only after the other fixes) | `display: inline-block` and `padding: 12px` |
+
+## Live site observations (Lab 4, Task 7)
+
+1. On localhost the address was http, the server was Apache from XAMPP, and the Remote Address was [::1]:80. On the live site the address is https, the server is GitHub.com, the protocol is h2, and the Remote Address is 185.199.111.153:443. It changed because the live site runs on GitHub's servers, which use a certificate and encrypted https on port 443, while my localhost server is only on my own computer and uses plain http on port 80.
+
+2. The padlock means the connection is encrypted and the certificate was issued by Let's Encrypt for *.github.io, valid from 1 October 2026 to 30 December 2026. If the site were plain http, an attacker on the same Wi-Fi could read or change the data sent between my browser and the server.
+
+3. The Saved orders table was empty on the live site because localStorage belongs to an origin (protocol, domain and port). The live site, https://ridaahassan.github.io, is a different origin from http://localhost, so it has its own empty storage and cannot see the orders I saved on localhost.
+
+4. The missing page returned status 404 (File not found). It was sent by GitHub's server, not by my website.
